@@ -1,0 +1,15 @@
+ktor:
+  deployment:
+    port: 8050
+  application:
+    modules:
+      - com.bulbainvest.gateway.ApplicationKt.module
+
+services:
+  domain:
+    baseUrl: "http://localhost:8040"
+
+httpClient:
+  requestTimeoutMillis: 5000
+  connectTimeoutMillis: 2000
+  socketTimeoutMillis: 5000
