@@ -22,6 +22,8 @@ tasks.named<JavaExec>("run") {
     val sourceSets = project.extensions.getByType(SourceSetContainer::class.java)
     classpath = sourceSets.getByName("main").runtimeClasspath
     mainClass.set(application.mainClass)
+    val configuredPort = System.getenv("PORT")?.ifBlank { null } ?: "8050"
+    args("-port=$configuredPort")
 }
 
 repositories {
@@ -37,6 +39,7 @@ dependencies {
     implementation("io.ktor:ktor-server-call-logging-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-cors-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-config-yaml-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-websockets-jvm:$ktorVersion")
 
     implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
     implementation("io.ktor:ktor-client-cio-jvm:$ktorVersion")
@@ -45,10 +48,12 @@ dependencies {
 
     implementation("io.insert-koin:koin-ktor:$koinVersion")
     implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
+    implementation("redis.clients:jedis:5.2.0")
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
     testImplementation("io.ktor:ktor-server-test-host-jvm:$ktorVersion")
+    testImplementation("io.ktor:ktor-client-websockets-jvm:$ktorVersion")
     testImplementation("io.ktor:ktor-client-mock-jvm:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }

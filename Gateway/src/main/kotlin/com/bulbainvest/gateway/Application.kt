@@ -1,15 +1,19 @@
 package com.bulbainvest.gateway
 
 import com.bulbainvest.gateway.application.ProxyUseCase
+import com.bulbainvest.gateway.application.QuoteSubscriptionUseCase
 import com.bulbainvest.gateway.config.AppConfig
 import com.bulbainvest.gateway.config.appModule
 import com.bulbainvest.gateway.config.loadAppConfig
-import com.bulbainvest.gateway.infrastructure.DefaultDownstreamServiceRegistry
-import com.bulbainvest.gateway.infrastructure.KtorDownstreamProxyClient
+import com.bulbainvest.gateway.domain.MarketQuotesStream
 import com.bulbainvest.gateway.plugins.configureSerialization
 import com.bulbainvest.gateway.plugins.configureStatusPages
+import com.bulbainvest.gateway.plugins.configureWebSockets
 import com.bulbainvest.gateway.presentation.domainProxyRoutes
+import com.bulbainvest.gateway.presentation.quoteSocketRoutes
 import io.ktor.server.application.Application
+import io.ktor.server.application.ApplicationStarted
+import io.ktor.server.application.ApplicationStopping
 import io.ktor.server.application.install
 import io.ktor.server.plugins.calllogging.CallLogging
 import io.ktor.server.plugins.cors.routing.CORS
@@ -26,6 +30,7 @@ fun main(args: Array<String>) {
 
 data class GatewayDependencies(
     val proxyUseCase: ProxyUseCase,
+    val quoteSubscriptionUseCase: QuoteSubscriptionUseCase,
 )
 
 @Suppress("unused")
@@ -37,9 +42,18 @@ fun Application.module() {
         modules(appModule(cfg))
     }
 
+    val marketQuotesStream: MarketQuotesStream = get()
+    monitor.subscribe(ApplicationStarted) {
+        marketQuotesStream.start()
+    }
+    monitor.subscribe(ApplicationStopping) {
+        marketQuotesStream.stop()
+    }
+
     gatewayModule(
         GatewayDependencies(
             proxyUseCase = get(),
+            quoteSubscriptionUseCase = get(),
         )
     )
 }
@@ -57,12 +71,14 @@ fun Application.gatewayModule(
 
     configureSerialization()
     configureStatusPages()
+    configureWebSockets()
 
     routing {
         get("/health") {
             call.respond(mapOf("status" to "ok"))
         }
 
+        quoteSocketRoutes(dependencies.quoteSubscriptionUseCase)
         domainProxyRoutes(dependencies.proxyUseCase)
     }
 }

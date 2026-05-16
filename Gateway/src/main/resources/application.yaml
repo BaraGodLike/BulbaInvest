@@ -9,6 +9,14 @@ services:
   domain:
     baseUrl: "http://localhost:8040"
 
+brokerRedis:
+  host: localhost
+  port: 6379
+  password: ""
+  db: 0
+  quotesChannel: "market.quotes.updated"
+  stockKeyPrefix: "market:stocks:"
+
 httpClient:
   requestTimeoutMillis: 5000
   connectTimeoutMillis: 2000
