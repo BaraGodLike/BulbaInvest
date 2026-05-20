@@ -1,0 +1,25 @@
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Generic build/cache dirs anywhere in repo
+**/bin/
+**/build/
+**/out/
+**/.gradle/
+**/.gradle-dist/
+**/.gradle-user/
+**/.kotlin/
+**/.kotlinc/
+
+# Go artifacts
+*.test
+coverage.out
+
+# Docker overrides
+docker-compose.override.yml
