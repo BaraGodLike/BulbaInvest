@@ -1,0 +1,323 @@
+<mxfile compressed="false" host="app.diagrams.net">
+  <diagram id="gateway-class" name="Gateway — Class Diagram">
+    <mxGraphModel dx="5264" dy="874" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3600" pageHeight="2100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lbl1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="1. Domain Layer — Interfaces" vertex="1">
+          <mxGeometry height="28" width="700" x="80" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="2. Domain Layer — Models &amp; Exceptions" vertex="1">
+          <mxGeometry height="28" width="900" x="80" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="3. Application Layer" vertex="1">
+          <mxGeometry height="28" width="700" x="80" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="5. Infrastructure Layer" vertex="1">
+          <mxGeometry height="28" width="700" x="80" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="4. Config &amp; DI" vertex="1">
+          <mxGeometry height="28" width="600" x="2280" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" parent="1" style="swimlane;fontStyle=3;align=center;startSize=26;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;html=1;whiteSpace=wrap;" value="«interface» DownstreamServiceRegistry" vertex="1">
+          <mxGeometry height="78" width="660" x="80" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i1m" parent="i1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ targetFor(service: DownstreamService): DownstreamTarget" vertex="1">
+          <mxGeometry height="48" width="660" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="i2" parent="1" style="swimlane;fontStyle=3;align=center;startSize=26;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;html=1;whiteSpace=wrap;" value="«interface» DownstreamProxyClient" vertex="1">
+          <mxGeometry height="78" width="700" x="780" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m" parent="i2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ suspend execute(request: ProxyRequest): ProxyResponse" vertex="1">
+          <mxGeometry height="48" width="700" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="i3" parent="1" style="swimlane;fontStyle=3;align=center;startSize=26;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;html=1;whiteSpace=wrap;" value="«interface» MarketQuotesStream" vertex="1">
+          <mxGeometry height="120" width="700" x="1520" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i3m" parent="i3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ updates: SharedFlow&lt;QuotesUpdatedEvent&gt;&lt;br&gt;+ suspend currentQuote(ticker: String): StockQuote?&lt;br&gt;+ start()&lt;br&gt;+ stop()" vertex="1">
+          <mxGeometry height="90" width="700" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="en1" parent="1" style="swimlane;fontStyle=3;align=center;startSize=26;container=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;html=1;whiteSpace=wrap;" value="«enumeration» DownstreamService" vertex="1">
+          <mxGeometry height="78" width="520" x="2580" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="en1f" parent="en1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="DOMAIN&lt;br&gt;GRAPH" vertex="1">
+          <mxGeometry height="48" width="520" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="DownstreamTarget" vertex="1">
+          <mxGeometry height="100" width="560" x="80" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="m1f" parent="m1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ service: DownstreamService&lt;br&gt;+ baseUrl: String" vertex="1">
+          <mxGeometry height="68" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="StockQuote" vertex="1">
+          <mxGeometry height="150" width="560" x="700" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="m2f" parent="m2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ ticker: String&lt;br&gt;+ price: Double&lt;br&gt;+ availableQuantity: Long&lt;br&gt;+ updatedAt: Long&lt;br&gt;+ volatility: Double?" vertex="1">
+          <mxGeometry height="118" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="QuotesUpdatedEvent" vertex="1">
+          <mxGeometry height="100" width="560" x="1320" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="m3f" parent="m3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ type: String&lt;br&gt;+ quotes: List&lt;StockQuote&gt;" vertex="1">
+          <mxGeometry height="68" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="ProxyRequest" vertex="1">
+          <mxGeometry height="180" width="620" x="1940" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="m4f" parent="m4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ target: DownstreamTarget&lt;br&gt;+ method: HttpMethod&lt;br&gt;+ encodedPath: String&lt;br&gt;+ queryString: String?&lt;br&gt;+ headers: Headers&lt;br&gt;+ body: ByteArray" vertex="1">
+          <mxGeometry height="148" width="620" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m5" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="ProxyResponse" vertex="1">
+          <mxGeometry height="120" width="560" x="2620" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="m5f" parent="m5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ statusCode: Int&lt;br&gt;+ headers: Headers&lt;br&gt;+ body: ByteArray" vertex="1">
+          <mxGeometry height="88" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ex1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#f8cecc;strokeColor=#b85450;html=1;whiteSpace=wrap;" value="BadGatewayException" vertex="1">
+          <mxGeometry height="70" width="560" x="2620" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="ex1f" parent="ex1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="extends RuntimeException(message, cause?)" vertex="1">
+          <mxGeometry height="38" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ex2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#f8cecc;strokeColor=#b85450;html=1;whiteSpace=wrap;" value="GatewayTimeoutException" vertex="1">
+          <mxGeometry height="70" width="560" x="2620" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="ex2f" parent="ex2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="extends RuntimeException(message, cause?)" vertex="1">
+          <mxGeometry height="38" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;html=1;whiteSpace=wrap;" value="ProxyUseCase" vertex="1">
+          <mxGeometry height="180" width="740" x="520" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1f" parent="uc1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- registry: DownstreamServiceRegistry&lt;br&gt;- proxyClient: DownstreamProxyClient" vertex="1">
+          <mxGeometry height="52" width="740" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1sep" parent="uc1" style="line;strokeColor=inherit;fillColor=none;;html=1" value="" vertex="1">
+          <mxGeometry height="8" width="740" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1m" parent="uc1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ suspend forwardTo(service: DownstreamService, method: HttpMethod,&lt;br&gt;    encodedPath: String, queryString: String?,&lt;br&gt;    headers: Headers, body: ByteArray): ProxyResponse" vertex="1">
+          <mxGeometry height="80" width="740" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;html=1;whiteSpace=wrap;" value="QuoteSubscriptionUseCase" vertex="1">
+          <mxGeometry height="210" width="780" x="1320" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2f" parent="uc2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- marketQuotesStream: MarketQuotesStream" vertex="1">
+          <mxGeometry height="38" width="780" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2sep" parent="uc2" style="line;strokeColor=inherit;fillColor=none;;html=1" value="" vertex="1">
+          <mxGeometry height="8" width="780" y="64" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2m" parent="uc2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ suspend currentQuotes(rawTickers: List&lt;String&gt;): List&lt;StockQuote&gt;&lt;br&gt;+ updatesFor(rawTickers: List&lt;String&gt;): Flow&lt;List&lt;StockQuote&gt;&gt;&lt;br&gt;+ requestTickers(parameters: Parameters): List&lt;String&gt;&lt;br&gt;- normalizeTickers(rawTickers: List&lt;String&gt;): List&lt;String&gt;" vertex="1">
+          <mxGeometry height="126" width="780" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;whiteSpace=wrap;" value="AppConfig" vertex="1">
+          <mxGeometry height="120" width="620" x="2280" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg1f" parent="cfg1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ services: ServicesConfig&lt;br&gt;+ brokerRedis: BrokerRedisConfig&lt;br&gt;+ httpClient: HttpClientConfig" vertex="1">
+          <mxGeometry height="88" width="620" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;whiteSpace=wrap;" value="ServicesConfig" vertex="1">
+          <mxGeometry height="100" width="620" x="2280" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg2f" parent="cfg2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ domain: ServiceConfig&lt;br&gt;+ graph: ServiceConfig" vertex="1">
+          <mxGeometry height="68" width="620" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;whiteSpace=wrap;" value="ServiceConfig" vertex="1">
+          <mxGeometry height="78" width="560" x="2940" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg3f" parent="cfg3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ baseUrl: String" vertex="1">
+          <mxGeometry height="48" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg4" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;whiteSpace=wrap;" value="BrokerRedisConfig" vertex="1">
+          <mxGeometry height="170" width="560" x="2940" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg4f" parent="cfg4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ host: String&lt;br&gt;+ port: Int&lt;br&gt;+ password: String?&lt;br&gt;+ db: Int&lt;br&gt;+ quotesChannel: String&lt;br&gt;+ stockKeyPrefix: String" vertex="1">
+          <mxGeometry height="138" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg5" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;whiteSpace=wrap;" value="HttpClientConfig" vertex="1">
+          <mxGeometry height="120" width="620" x="2280" y="1050" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg5f" parent="cfg5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ requestTimeoutMillis: Long&lt;br&gt;+ connectTimeoutMillis: Long&lt;br&gt;+ socketTimeoutMillis: Long" vertex="1">
+          <mxGeometry height="88" width="620" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="inf1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d79b00;html=1;whiteSpace=wrap;" value="DefaultDownstreamServiceRegistry" vertex="1">
+          <mxGeometry height="130" width="700" x="80" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="inf1f" parent="inf1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- config: AppConfig" vertex="1">
+          <mxGeometry height="38" width="700" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="inf1sep" parent="inf1" style="line;strokeColor=inherit;fillColor=none;;html=1" value="" vertex="1">
+          <mxGeometry height="8" width="700" y="64" as="geometry" />
+        </mxCell>
+        <mxCell id="inf1m" parent="inf1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ targetFor(service: DownstreamService): DownstreamTarget" vertex="1">
+          <mxGeometry height="48" width="700" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="inf2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d79b00;html=1;whiteSpace=wrap;" value="KtorDownstreamProxyClient" vertex="1">
+          <mxGeometry height="170" width="720" x="840" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="inf2f" parent="inf2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- client: HttpClient" vertex="1">
+          <mxGeometry height="38" width="720" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="inf2sep" parent="inf2" style="line;strokeColor=inherit;fillColor=none;;html=1" value="" vertex="1">
+          <mxGeometry height="8" width="720" y="64" as="geometry" />
+        </mxCell>
+        <mxCell id="inf2m" parent="inf2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ suspend execute(request: ProxyRequest): ProxyResponse&lt;br&gt;- buildTargetUrl(baseUrl: String, encodedPath: String, queryString: String?): String" vertex="1">
+          <mxGeometry height="86" width="720" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="inf3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d79b00;html=1;whiteSpace=wrap;" value="RedisMarketQuotesStream" vertex="1">
+          <mxGeometry height="260" width="760" x="1620" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="inf3f" parent="inf3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- config: BrokerRedisConfig&lt;br&gt;- log: Logger&lt;br&gt;- updatesFlow: MutableSharedFlow&lt;QuotesUpdatedEvent&gt;&lt;br&gt;- running: AtomicBoolean&lt;br&gt;- pool: JedisPool&lt;br&gt;- subscriberThread: Thread? (Volatile)&lt;br&gt;- pubSub: JedisPubSub? (Volatile)" vertex="1">
+          <mxGeometry height="150" width="760" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="inf3sep" parent="inf3" style="line;strokeColor=inherit;fillColor=none;;html=1" value="" vertex="1">
+          <mxGeometry height="8" width="760" y="176" as="geometry" />
+        </mxCell>
+        <mxCell id="inf3m" parent="inf3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ start()&lt;br&gt;+ stop()&lt;br&gt;+ suspend currentQuote(ticker: String): StockQuote?&lt;br&gt;- runSubscriberLoop()&lt;br&gt;- handleMessage(channel: String, message: String)" vertex="1">
+          <mxGeometry height="64" width="760" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="plg1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="ErrorResponse" vertex="1">
+          <mxGeometry height="100" width="560" x="2440" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="plg1f" parent="plg1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ error: String&lt;br&gt;+ message: String?" vertex="1">
+          <mxGeometry height="68" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="inf1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i1" value="implements">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="1325" />
+              <mxPoint x="40" y="250" />
+              <mxPoint x="410" y="250" />
+              <mxPoint x="410" y="148" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="inf2" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i2" value="implements">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1200" y="1600" />
+              <mxPoint x="3660" y="1600" />
+              <mxPoint x="3660" y="280" />
+              <mxPoint x="1130" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="inf3" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i3" value="implements">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2000" y="1580" />
+              <mxPoint x="3590" y="1580" />
+              <mxPoint x="3590" y="240" />
+              <mxPoint x="1870" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-10.04" y="820" />
+              <mxPoint x="-10.04" y="220" />
+              <mxPoint x="359.96" y="220" />
+            </Array>
+            <mxPoint x="469.91999999999996" y="820" as="sourcePoint" />
+            <mxPoint x="359.9599999999999" y="148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="uc1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i2" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="890" y="730" />
+              <mxPoint x="890" y="620" />
+              <mxPoint x="1280" y="620" />
+              <mxPoint x="1280" y="250" />
+              <mxPoint x="1130" y="250" />
+              <mxPoint x="1130" y="148" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="uc2" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i3" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1710" y="730" />
+              <mxPoint x="1710" y="620" />
+              <mxPoint x="1900" y="620" />
+              <mxPoint x="1900" y="250" />
+              <mxPoint x="1870" y="250" />
+              <mxPoint x="1870" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="cfg1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;startArrow=diamond;startFill=1;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="cfg2" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2590" y="860" />
+              <mxPoint x="2590" y="900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="cfg1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;startArrow=diamond;startFill=1;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="cfg4" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2910" y="790" />
+              <mxPoint x="2910" y="935" />
+              <mxPoint x="2940" y="935" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="cfg1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;startArrow=diamond;startFill=1;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="cfg5" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2280" y="790" />
+              <mxPoint x="2240" y="790" />
+              <mxPoint x="2240" y="1110" />
+              <mxPoint x="2280" y="1110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="cfg2" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;startArrow=diamond;startFill=1;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="cfg3" value="2x">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2910" y="950" />
+              <mxPoint x="2910" y="769" />
+              <mxPoint x="2940" y="769" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="m4" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=diamond;startFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="m1" value="contains">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1910" y="420" />
+              <mxPoint x="1910" y="620" />
+              <mxPoint x="360" y="620" />
+              <mxPoint x="360" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="m3" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=diamond;startFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="m2" value="1..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290" y="380" />
+              <mxPoint x="1290" y="540" />
+              <mxPoint x="980" y="540" />
+              <mxPoint x="980" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="359.96" y="312" />
+              <mxPoint x="359.96" y="262" />
+              <mxPoint x="2839.96" y="262" />
+              <mxPoint x="2839.96" y="160" />
+            </Array>
+            <mxPoint x="359.99999999999994" y="342" as="sourcePoint" />
+            <mxPoint x="2839.999999999999" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacing=8;" value="UML notation:&amp;lt;br&amp;gt;— dashed open arrow: «use» dependency&amp;lt;br&amp;gt;— dashed triangle: implements / realization&amp;lt;br&amp;gt;— filled diamond: composition&amp;lt;br&amp;gt;— empty diamond: aggregation / contains&amp;lt;br&amp;gt;— all arrows are attached and routed around blocks" vertex="1">
+          <mxGeometry height="130" width="760" x="2290" y="1690" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
