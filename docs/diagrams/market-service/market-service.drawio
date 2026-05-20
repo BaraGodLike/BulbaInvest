@@ -1,0 +1,358 @@
+<mxfile compressed="false" host="app.diagrams.net">
+  <diagram id="market-service-class" name="Market Service — Class Diagram">
+    <mxGraphModel dx="1664" dy="874" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3400" pageHeight="2050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=20;fontColor=#1f2937;whiteSpace=wrap;" value="Market Service — Class Diagram" vertex="1">
+          <mxGeometry height="32" width="900" x="80" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="Interfaces" vertex="1">
+          <mxGeometry height="24" width="280" x="80" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="Config" vertex="1">
+          <mxGeometry height="24" width="220" x="80" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="Market Engine" vertex="1">
+          <mxGeometry height="24" width="260" x="760" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="Domain Models" vertex="1">
+          <mxGeometry height="24" width="260" x="80" y="865" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="Redis Layer" vertex="1">
+          <mxGeometry height="24" width="260" x="80" y="1195" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl6" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="Persistence" vertex="1">
+          <mxGeometry height="24" width="260" x="80" y="1595" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl7" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=13;fontColor=#001f8e;;whiteSpace=wrap" value="HTTP Layer" vertex="1">
+          <mxGeometry height="24" width="260" x="680" y="1595" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" parent="1" style="swimlane;fontStyle=3;align=center;startSize=26;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;html=1;whiteSpace=wrap;" value="«interface» Driver" vertex="1">
+          <mxGeometry height="122" width="560" x="80" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="i1m" parent="i1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Tick(): error&lt;br&gt;+ Snapshot(): ([]StockQuote, error)&lt;br&gt;+ ApplyBuy(ticker string, quantity uint64): error&lt;br&gt;+ ApplySell(ticker string, quantity uint64): error" vertex="1">
+          <mxGeometry height="92" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="i2" parent="1" style="swimlane;fontStyle=3;align=center;startSize=26;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;html=1;whiteSpace=wrap;" value="«interface» InventoryStore" vertex="1">
+          <mxGeometry height="78" width="560" x="720" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m" parent="i2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ SaveQuantity(ctx context.Context, ticker string, quantity uint64): error" vertex="1">
+          <mxGeometry height="32" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="i3" parent="1" style="swimlane;fontStyle=3;align=center;startSize=26;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;html=1;whiteSpace=wrap;" value="«interface» Publisher" vertex="1">
+          <mxGeometry height="122" width="700" x="1360" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="i3m" parent="i3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ StoreQuotes(ctx context.Context, quotes []StockQuote): error&lt;br&gt;+ PublishQuotesUpdated(ctx context.Context, quotes []StockQuote): error&lt;br&gt;+ PublishCompanyBuyResult(ctx context.Context, result CompanyBuyResult): error&lt;br&gt;+ PublishCompanySellResult(ctx context.Context, result CompanySellResult): error" vertex="1">
+          <mxGeometry height="92" width="700" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="i4" parent="1" style="swimlane;fontStyle=3;align=center;startSize=26;container=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;html=1;whiteSpace=wrap;" value="«interface» CompanyTradeHandler" vertex="1">
+          <mxGeometry height="96" width="740" x="2180" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="i4m" parent="i4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ HandleCompanyBuy(ctx context.Context, event CompanyBuyRequested): (CompanyBuyResult, error)&lt;br&gt;+ HandleCompanySell(ctx context.Context, event CompanySellRequested): (CompanySellResult, error)" vertex="1">
+          <mxGeometry height="52" width="740" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;whiteSpace=wrap;" value="Config" vertex="1">
+          <mxGeometry height="212" width="560" x="80" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="c1f" parent="c1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ HTTPAddr: string&lt;br&gt;+ RedisAddr: string&lt;br&gt;+ RedisPassword: string&lt;br&gt;+ RedisDB: int&lt;br&gt;+ InventoryDB: InventoryDBConfig&lt;br&gt;+ MarketDriverConfig: string&lt;br&gt;+ TickInterval: time.Duration&lt;br&gt;+ ConsumerGroup: string&lt;br&gt;+ ConsumerName: string" vertex="1">
+          <mxGeometry height="182" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;whiteSpace=wrap;" value="InventoryDBConfig" vertex="1">
+          <mxGeometry height="180" width="560" x="80" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="c2f" parent="c2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Host: string&lt;br&gt;+ Port: int&lt;br&gt;+ Name: string&lt;br&gt;+ User: string&lt;br&gt;+ Password: string&lt;br&gt;+ SSLMode: string" vertex="1">
+          <mxGeometry height="118" width="560" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c2sep" parent="c2" style="line;strokeColor=inherit;fillColor=none;;html=1;whiteSpace=wrap" value="" vertex="1">
+          <mxGeometry height="8" width="560" y="144" as="geometry" />
+        </mxCell>
+        <mxCell id="c2m" parent="c2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Enabled(): bool" vertex="1">
+          <mxGeometry height="24" width="560" y="152" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;html=1;whiteSpace=wrap;" value="Service" vertex="1">
+          <mxGeometry height="256" width="700" x="760" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="s1f" parent="s1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- driver: Driver&lt;br&gt;- publisher: Publisher&lt;br&gt;- inventory: InventoryStore&lt;br&gt;- tickInterval: time.Duration&lt;br&gt;- log: *log.Logger" vertex="1">
+          <mxGeometry height="100" width="700" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s1sep" parent="s1" style="line;strokeColor=inherit;fillColor=none;;html=1;whiteSpace=wrap" value="" vertex="1">
+          <mxGeometry height="8" width="700" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="s1m" parent="s1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ SetInventoryStore(store InventoryStore)&lt;br&gt;+ StartTickLoop(ctx context.Context)&lt;br&gt;+ TickOnce(ctx context.Context): error&lt;br&gt;+ Snapshot(): ([]StockQuote, error)&lt;br&gt;+ HandleCompanyBuy(ctx context.Context, event CompanyBuyRequested): (CompanyBuyResult, error)&lt;br&gt;+ HandleCompanySell(ctx context.Context, event CompanySellRequested): (CompanySellResult, error)" vertex="1">
+          <mxGeometry height="118" width="700" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;html=1;whiteSpace=wrap;" value="PackageDriver" vertex="1">
+          <mxGeometry height="130" width="600" x="1540" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="s2sep" parent="s2" style="line;strokeColor=inherit;fillColor=none;;html=1;whiteSpace=wrap" value="" vertex="1">
+          <mxGeometry height="8" width="600" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s2m" parent="s2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Tick(): error&lt;br&gt;+ Snapshot(): ([]StockQuote, error)&lt;br&gt;+ ApplyBuy(ticker string, quantity uint64): error&lt;br&gt;+ ApplySell(ticker string, quantity uint64): error&lt;br&gt;+ SetAvailableQuantity(ticker string, quantity uint64): error" vertex="1">
+          <mxGeometry height="92" width="600" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="StockQuote" vertex="1">
+          <mxGeometry height="130" width="500" x="80" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="m1f" parent="m1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Ticker: string&lt;br&gt;+ Price: float64&lt;br&gt;+ AvailableQuantity: uint64&lt;br&gt;+ Volatility: float64&lt;br&gt;+ UpdatedAtUnix: int64" vertex="1">
+          <mxGeometry height="100" width="500" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="CompanyBuyRequested" vertex="1">
+          <mxGeometry height="152" width="500" x="620" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="m2f" parent="m2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ EventID: string&lt;br&gt;+ TradeID: string&lt;br&gt;+ UserID: string&lt;br&gt;+ Ticker: string&lt;br&gt;+ Quantity: uint64&lt;br&gt;+ Price: float64" vertex="1">
+          <mxGeometry height="122" width="500" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="CompanyBuyResult" vertex="1">
+          <mxGeometry height="186" width="580" x="1160" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="m3f" parent="m3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ EventID: string&lt;br&gt;+ TradeID: string&lt;br&gt;+ Ticker: string&lt;br&gt;+ Quantity: uint64&lt;br&gt;+ Accepted: bool&lt;br&gt;+ ActualPrice: float64&lt;br&gt;+ RemainingAvailableQuantity: uint64&lt;br&gt;+ Reason: *string (optional)" vertex="1">
+          <mxGeometry height="156" width="580" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="CompanySellRequested" vertex="1">
+          <mxGeometry height="152" width="500" x="1800" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="m4f" parent="m4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ EventID: string&lt;br&gt;+ TradeID: string&lt;br&gt;+ UserID: string&lt;br&gt;+ Ticker: string&lt;br&gt;+ Quantity: uint64&lt;br&gt;+ Price: float64" vertex="1">
+          <mxGeometry height="122" width="500" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m5" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="CompanySellResult" vertex="1">
+          <mxGeometry height="186" width="580" x="2340" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="m5f" parent="m5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ EventID: string&lt;br&gt;+ TradeID: string&lt;br&gt;+ Ticker: string&lt;br&gt;+ Quantity: uint64&lt;br&gt;+ Accepted: bool&lt;br&gt;+ ActualPrice: float64&lt;br&gt;+ RemainingAvailableQuantity: uint64&lt;br&gt;+ Reason: *string (optional)" vertex="1">
+          <mxGeometry height="156" width="580" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d79b00;html=1;whiteSpace=wrap;" value="redis.Client" vertex="1">
+          <mxGeometry height="162" width="500" x="80" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="r1f" parent="r1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- addr: string&lt;br&gt;- password: string&lt;br&gt;- db: int&lt;br&gt;- timeout: time.Duration" vertex="1">
+          <mxGeometry height="82" width="500" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="r1sep" parent="r1" style="line;strokeColor=inherit;fillColor=none;;html=1;whiteSpace=wrap" value="" vertex="1">
+          <mxGeometry height="8" width="500" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="r1m" parent="r1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Do(ctx context.Context, args ...any): (any, error)&lt;br&gt;- dial(ctx context.Context): (net.Conn, error)" vertex="1">
+          <mxGeometry height="42" width="500" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d79b00;html=1;whiteSpace=wrap;" value="redis.Publisher" vertex="1">
+          <mxGeometry height="194" width="720" x="620" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="r2f" parent="r2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- client: *Client" vertex="1">
+          <mxGeometry height="26" width="720" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="r2sep" parent="r2" style="line;strokeColor=inherit;fillColor=none;;html=1;whiteSpace=wrap" value="" vertex="1">
+          <mxGeometry height="8" width="720" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m" parent="r2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ StoreQuotes(ctx context.Context, quotes []StockQuote): error&lt;br&gt;+ PublishQuotesUpdated(ctx context.Context, quotes []StockQuote): error&lt;br&gt;+ PublishCompanyBuyResult(ctx context.Context, result CompanyBuyResult): error&lt;br&gt;+ PublishCompanySellResult(ctx context.Context, result CompanySellResult): error&lt;br&gt;+ LoadQuotes(ctx context.Context): ([]StockQuote, error)&lt;br&gt;+ LoadQuote(ctx context.Context, ticker string): (StockQuote, bool, error)" vertex="1">
+          <mxGeometry height="130" width="720" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d79b00;html=1;whiteSpace=wrap;" value="redis.Consumer" vertex="1">
+          <mxGeometry height="182" width="720" x="1420" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="r3f" parent="r3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- client: *Client&lt;br&gt;- handler: CompanyTradeHandler&lt;br&gt;- group: string&lt;br&gt;- consumerName: string&lt;br&gt;- log: *log.Logger" vertex="1">
+          <mxGeometry height="100" width="720" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="r3sep" parent="r3" style="line;strokeColor=inherit;fillColor=none;;html=1;whiteSpace=wrap" value="" vertex="1">
+          <mxGeometry height="8" width="720" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="r3m" parent="r3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Start(ctx context.Context)&lt;br&gt;- consume(ctx, stream string, handler func(context.Context, string, StreamMessage))" vertex="1">
+          <mxGeometry height="44" width="720" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="StreamMessage" vertex="1">
+          <mxGeometry height="82" width="480" x="2220" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="r4f" parent="r4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ ID: string&lt;br&gt;+ Fields: map[string]string" vertex="1">
+          <mxGeometry height="52" width="480" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="QuotesUpdatedEvent" vertex="1">
+          <mxGeometry height="80" width="480" x="2220" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="r5f" parent="r5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Type: string&lt;br&gt;+ Quotes: []StockQuote" vertex="1">
+          <mxGeometry height="50" width="480" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;html=1;whiteSpace=wrap;" value="inventorypg.Repository" vertex="1">
+          <mxGeometry height="150" width="500" x="80" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="p1f" parent="p1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- db: *sql.DB&lt;br&gt;- log: *log.Logger" vertex="1">
+          <mxGeometry height="46" width="500" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p1sep" parent="p1" style="line;strokeColor=inherit;fillColor=none;;html=1;whiteSpace=wrap" value="" vertex="1">
+          <mxGeometry height="8" width="500" y="72" as="geometry" />
+        </mxCell>
+        <mxCell id="p1m" parent="p1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Close(): error&lt;br&gt;+ LoadQuantities(ctx context.Context): (map[string]uint64, error)&lt;br&gt;+ SaveQuantity(ctx context.Context, ticker string, quantity uint64): error" vertex="1">
+          <mxGeometry height="66" width="500" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="h1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;html=1;whiteSpace=wrap;" value="inventoryHandler" vertex="1">
+          <mxGeometry height="150" width="680" x="680" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="h1f" parent="h1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="- ctx: context.Context&lt;br&gt;- service: inventoryService&lt;br&gt;- redis: redisCommander" vertex="1">
+          <mxGeometry height="62" width="680" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h1sep" parent="h1" style="line;strokeColor=inherit;fillColor=none;;html=1;whiteSpace=wrap" value="" vertex="1">
+          <mxGeometry height="8" width="680" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="h1m" parent="h1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ handleDecrement(w http.ResponseWriter, r *http.Request)&lt;br&gt;+ handleIncrement(w http.ResponseWriter, r *http.Request)" vertex="1">
+          <mxGeometry height="50" width="680" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="inventoryRequest" vertex="1">
+          <mxGeometry height="98" width="500" x="1480" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="h2f" parent="h2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Ticker: string&lt;br&gt;+ Quantity: string&lt;br&gt;+ IdempotencyKey: string" vertex="1">
+          <mxGeometry height="68" width="500" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="inventoryResponse" vertex="1">
+          <mxGeometry height="116" width="500" x="2020" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="h3f" parent="h3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ Ticker: string&lt;br&gt;+ Remaining: string&lt;br&gt;+ IdempotencyKey: string&lt;br&gt;+ Applied: bool" vertex="1">
+          <mxGeometry height="86" width="500" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h4" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;whiteSpace=wrap;" value="storedOutcome" vertex="1">
+          <mxGeometry height="116" width="500" x="2560" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="h4f" parent="h4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;overflow=fill;rotatable=0;html=1;whiteSpace=wrap;" value="+ StatusCode: int&lt;br&gt;+ Response: *inventoryResponse&lt;br&gt;+ Error: *errorResponse&lt;br&gt;+ DuplicateApplied: bool" vertex="1">
+          <mxGeometry height="86" width="500" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="s2" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i1" value="implements">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1840" y="340" />
+              <mxPoint x="2110" y="340" />
+              <mxPoint x="2110" y="45" />
+              <mxPoint x="360" y="45" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="r2" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i3" value="implements">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="1200" />
+              <mxPoint x="3020" y="1200" />
+              <mxPoint x="3020" y="45" />
+              <mxPoint x="1710" y="45" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="p1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i2" value="implements">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="1600" />
+              <mxPoint x="45" y="1600" />
+              <mxPoint x="45" y="45" />
+              <mxPoint x="1000" y="45" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i4" value="implements">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1110" y="340" />
+              <mxPoint x="2140" y="340" />
+              <mxPoint x="2140" y="45" />
+              <mxPoint x="2550" y="45" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i1" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="498" />
+              <mxPoint x="680" y="498" />
+              <mxPoint x="680" y="151" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i2" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1110" y="340" />
+              <mxPoint x="1110" y="185" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i3" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1480" y="498" />
+              <mxPoint x="1480" y="340" />
+              <mxPoint x="1710" y="340" />
+              <mxPoint x="1710" y="212" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="r3" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="i4" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="1320" />
+              <mxPoint x="3020" y="1320" />
+              <mxPoint x="3020" y="45" />
+              <mxPoint x="2550" y="45" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="r3" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="r1" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1780" y="1200" />
+              <mxPoint x="1780" y="1160" />
+              <mxPoint x="330" y="1160" />
+              <mxPoint x="330" y="1210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="r2" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="r1" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="1320" />
+              <mxPoint x="590" y="1320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="h1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="s1" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1020" y="1560" />
+              <mxPoint x="3060" y="1560" />
+              <mxPoint x="3060" y="340" />
+              <mxPoint x="1110" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="c1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;startArrow=diamond;startFill=1;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="c2" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="h1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="h2" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1380" y="1680" />
+              <mxPoint x="1460" y="1680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="h1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="h3" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1020" y="1600" />
+              <mxPoint x="1020" y="1580" />
+              <mxPoint x="2270" y="1580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="h1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;fontSize=10;html=1;rounded=0;strokeWidth=1.5;" target="h4" value="use">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1020" y="1600" />
+              <mxPoint x="1020" y="1560" />
+              <mxPoint x="2810" y="1560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacing=8;" value="UML notation:&amp;lt;br&amp;gt;— dashed triangle: realization / implements&amp;lt;br&amp;gt;— dashed open arrow: dependency / use&amp;lt;br&amp;gt;— filled diamond: composition" vertex="1">
+          <mxGeometry height="120" width="260" x="3080" y="1630" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
